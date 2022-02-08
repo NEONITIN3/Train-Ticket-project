@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register Page</title>
+<link rel="stylesheet" th:href="@{css/style.css}">
+<link rel="stylesheet" th:href="@{css/media.css}">
+<link rel="icon" th:href="@{images/undraw_profile_pic_ic5t.svg}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,700;1,900&display=swap"
+	rel="stylesheet">
+
+</head>
+<body>
+
+
+	<main class="main">
+
+		<div class="container">
+			<img th:src="@{/images/footer-logo.webp}" height="80" width="80" style="margin-left:3%;border-radius: 52%">
+			<div class="forms">
+				<!-- <br><h1 style="margin-left: 5.2%; margin-bottom: 2%;">WELCOME TO INDIAN RAILWAYS</h1> -->
+				<div class="sign__blog">
+
+					<form th:action="@{/login}" class="signin" method="post">
+						<div class="profile__img__blog">
+                            <img th:src="@{/images/footer-logo.webp}" alt="" class="profile">
+                        </div><br>
+
+						<h2 class="title">Sign in</h2>
+
+						<div class="input__blog">
+							<i class="fas fa-user-circle" ></i> <input id="username" type="text"
+								name="userName" placeholder="Username" required>
+						</div>
+
+						<div class="input__blog">
+							<i class="fas fa-lock"></i> <input id="password" type="password"
+								name="password" placeholder="Password" required>
+						</div>
+
+						<input type="submit" value="Login" class="btn login">
+						<p class="signin__text">Sign in with Social Platforms</p>
+
+						<div class="social__media">
+
+							<a class="socials" href="https://google.com"><img id="gg" 
+								src="https://img.icons8.com/fluent/35/000000/google-logo.png"/></a>
+							<a class="socials" href="https://facebook.com"><i id="fc"
+								class="fab fa-facebook"></i></a> <a class="socials"
+								href="https://instagram.com"><i id="is"
+								class="fab fa-instagram-square"></i></a> <a class="socials"
+								href="https://twitter.com"><i id="tw"
+								class="fab fa-twitter-square"></i></a>
+						</div>
+					</form>
+
+					<form action="/register" class="register" method="post">
+
+						<h2 class="title">Sign up</h2>
+
+						<div class="input__blog">
+							<i class="fas fa-user"></i> <input id="fullname" name="fullName"
+								type="text" placeholder="Full name" required>
+						</div>
+
+						<div class="input__blog">
+							<i class="fas fa-user-circle"></i> <input id="username" name="userName"
+								type="text" placeholder="Username" required>
+						</div>
+
+						<div class="input__blog">
+							<i class="fas fa-envelope"></i> <input id="email" name="email"
+								type="email" placeholder="e-mail" required>
+						</div>
+
+						<div class="input__blog">
+							<i class="fas fa-phone"></i> <input id="number" name="number"
+								type="text" placeholder="Phone number" required>
+						</div>
+
+						<div class="input__blog">
+							<i class="fas fa-lock"></i> <input id="password" name="password"
+								type="password" placeholder="Password" required>
+						</div>
+
+						<input type="submit" value="Register" class="btn login"
+							th:onclick="validateform2()">
+						<p class="signin__text">Sign in with Social Platforms</p>
+
+						<div class="social__media">
+
+							<a class="socials" href="https://google.com"><img id="gg" 
+								src="https://img.icons8.com/fluent/35/000000/google-logo.png"/></a>
+							<a class="socials" href="https://facebook.com"><i id="fc"
+								class="fab fa-facebook"></i></a> <a class="socials"
+								href="https://instagram.com"><i id="is"
+								class="fab fa-instagram-square"></i></a> <a class="socials"
+								href="https://twitter.com"><i id="tw"
+								class="fab fa-twitter-square"></i></a>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+			<div class="panels__blog">
+
+				<div class="panel left__panel">
+
+					<div class="content">
+						<h2>WELCOME TO SHUBH YAATRA</h2>
+						<br>
+						<h3 class="panel__title">New here ?</h3>
+						<p class="panel__text">Plan your first journey with us</p>
+						<button class="btn transparent" id="register__btn">Register</button><br>
+						<label>Or</label>
+						<form action="https://neonitin3.github.io/LiveEmoji/index.html" target="_blank">
+							<input type="submit" class="btn transparent" value="Play Game">
+						</form><br>
+						<div>
+							<button th:onclick="openchat()" style="color: white; background-color: #1c99ff; border: none; border-radius: 50%;"><i class="fas fa-comments fa-5x"></i></button>
+						</div>
+
+					</div>
+					<img th:src="@{images/undraw_Login_re_4vu2.svg}" alt="" class="panel__images">
+				</div>
+
+				<div class="panel right__panel">
+
+					<div class="content">
+						<h2>WELCOME TO SHUBH YAATRA</h2>
+						<br>
+						<h3 class="panel__title">Already have account</h3>
+						<p class="panel__text">We are happy to see you again start
+							your journey</p>
+						<button class="btn transparent" id="signin__btn">Sign in</button><br>
+
+						<label>Or</label>
+
+						<form th:action="@{/admin}" target="_blank">
+							<input type="submit" class="btn transparent" value="Admin">
+							<!-- <a class="btn-warning" th:href="@{/gateway}" target="_blank"></a> -->
+						</form>
+						<br>
+						<div>
+							<button th:onclick="openchat()" style="color: white; background-color: #1c99ff; border: none; border-radius: 50%;"><i class="fas fa-comments fa-5x"></i></button>
+						</div>
+
+
+					</div>
+					<img th:src="@{images/undraw_authentication_fsn5.svg}" alt=""
+						class="panel__images">
+				</div>
+
+			</div>
+		</div>
+	</main>
+
+	<script th:src="@{js/script.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{css/home.css}">
+    <link rel="stylesheet" th:href="@{images/train3.jpg}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,700;1,900&display=swap"
+	rel="stylesheet">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+
+   
+</head>
+<body>
+    <div class="class">
+        <div class="class1">
+            <ul>
+                <div style="margin-left:2%; margin-top: 0.2%;">
+                    <li><img th:src="@{/images/trn.jfif}" height="55" width="55" style="border-radius: 52%"></li>
+                </div>
+                <div style="color: white; margin-left: 40%; size: 25%; ">
+                    <li><a style="font-size: 22px; text-decoration: none"><b >Welcome to Shubh Yaatra</b></a></li>
+                </div>
+    
+                <div style="margin-left: 76%; margin-top: 0.5%; color: white;">
+                    <li><a th:href="@{/home}">Home</a></li>
+                    <li><a th:href="@{https://docs.google.com/forms/d/1QUYR5TyaGOvivluwOqP0ST_esTsi7rv-OJB-znpA6rE/viewform?edit_requested=true}" target="_blank">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a th:href="@{/}">Logout</a></li>
+                </div>
+            </ul>
+        </div>      
+
+        
+    
+        <div class="container mt-5">
+
+            <!-- <div class="search-box mb-5">
+                <input type="text" name="box" placeholder="Search Train">
+                <button id="button"><i class="fa fa-search"></i></button>
+            </div>    -->
+            
+            <div class="marquee">
+                <marquee style="color: #158ef1;"><h3>!! List of Train Available !!</h3></marquee>
+            </div>
+            <table style="width:100%;">
+    
+                <tr style="background-color: #2196F3; color: white;">
+                    <th>Train Number</th>
+                    <th>Train Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Quota</th>
+                    <th>All Classes</th>
+                    <th>Price</th>
+                    <th>Book Ticket</th>
+                </tr>
+    
+            <tr th:each="train : ${allTrains}">
+                    <td th:text="${train.trainNo}" style="color: rgb(0, 124, 10);"></td>
+                    <td th:text="${train.trainName}" style="color: rgb(207, 0, 0);"></td>
+                    <td th:text="${train.source}" style="color: rgb(0, 124, 10);"></td>
+                    <td th:text="${train.destination}" style="color: rgb(0, 124, 10);"></td>
+                    <td><select id="quota" name="quota" style="color: #2196F3" th:onclick="cl()">
+                        <option value="general">GENERAL</option>
+                        <option value="ladies">LADIES</option>
+                        <option value="senior">SR.CITIZEN</option>
+                        <option value="tatkal">TATKAL</option>
+                      </select></td>
+                      <td><select id="cl" name="class" style="color: #2196F3;" th:onclick="cl()">
+                          <option value="sl">SLEEPER (SL)</option>
+                        <option value="ac2">AC SECOND CLASS (2A)</option>
+                        <option value="ac3">AC THIRD CLASS (3A)</option>
+                        <option value="chair">SECOND SITTING (2S)</option>
+                      </select></td>
+                    <td th:text="${train.ticketPrice}" id="ticketPrice" style="color: rgb(207, 0, 0);"></td> 
+                    <td><a th:href='@{/bookTrain/} + ${train.trainNo}'
+                        class="btn btn-warning" style="color: rgb(8, 8, 8);"><b>Book</b></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+    <footer>
+        <p class="copyright">&copy; All rights reserved</p>
+    </footer>
+</body>
+</html>

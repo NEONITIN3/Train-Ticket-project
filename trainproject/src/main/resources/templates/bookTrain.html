@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Ticket Booking</title>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous">
+    
+	<link th:href="@{/css/book.css}" rel="stylesheet" />
+	<!-- <link rel="icon" th:href="@{images/undraw_profile_pic_ic5t.svg}"> -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+	<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,700;1,900&display=swap"
+	rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+</head>
+
+<body>
+	<div>
+        <ul>
+			<div style="margin-left:2%; margin-top: 0.2%;">
+                <li><img th:src="@{/images/trn.jfif}" height="55" width="55" style="border-radius: 52%"></li>
+            </div>
+            <!-- <div style="margin-left: 7.7%;">
+                <li><a class="active" th:href="@{/home}">Home</a></li>
+            </div> -->
+            <div style="color: white; margin-left: 40%; size: 25%; ">
+                <li><a style="font-size: 22px; text-decoration: none"><b >Welcome to Shubh Yaatra</b></a></li>
+            </div>
+
+            <div style="margin-left: 76%; margin-top: 0.5%; color: white;">
+				<li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{https://docs.google.com/forms/d/1QUYR5TyaGOvivluwOqP0ST_esTsi7rv-OJB-znpA6rE/viewform?edit_requested=true}" target="_blank">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a th:href="@{/}">Logout</a></li>
+            </div>
+        </ul>
+    </div>
+
+	<div class="container">
+		<br>
+			<div class="row mt-lg-5 mb-lg-5">
+				<h3 style=" color: rgb(40, 140, 221);">Train Details :</h3>
+				<div class="form-control mb-3">
+					<div class="row1 mt-3" >
+						Train Number: <input type="text" th:field="${train.trainNo}" style="color: rgb(224, 0, 0); margin-left: 1%;" class="form-control"
+								readonly="readonly">
+					</div>
+					<div class="row1">				
+						Train Name: <input type="text" th:field="${train.trainName}" style="color: rgb(224, 0, 0); margin-left: 2.7%;" class="form-control"
+						readonly="readonly">
+					</div>
+					<div class="row1">				
+						Source: <input type="text" th:field="${train.source}" style="color: rgb(224, 0, 0); margin-left: 6.1%;"  class="form-control"
+						readonly="readonly">
+					</div>
+					<div class="row1">				
+						Destination: <input type="text" th:field="${train.destination}" style="color: rgb(224, 0, 0); margin-left: 2.7%;" class="form-control"
+						readonly="readonly">
+					</div>
+					<div class="row1">				
+						Price: <input type="text" id="price" th:value="${train.ticketPrice}" style="color: rgb(224, 0, 0); margin-left: 7.6%;" class="form-control"
+						readonly="readonly">
+					</div>
+				</div>
+			</div>
+		<hr>
+
+		
+		<form th:action="@{/bookTrain/} + ${train.trainNo}" id="myForm" method="post">	
+			
+			<!-- <form th:action="@{/gateway}" method="post"> -->
+				<div class="col mb-lg-5">
+					<h3 style=" color: rgb(40, 140, 221); margin-top: 5%; margin-left: 1%;">Enter Passenger Details :</h3>
+					<div class="form-control my-3">
+						Passenger: <input type="number" min="1" max="6" id="noPassenger" name="noPassenger" placeholder="No. of passenger" class="form-control" style="width: 16.8%; margin-right: 6%;" required>
+						Travel Date: <input type="date" id="travelDate" name="travelDate"  class="form-control" placeholder="dd-mm-yyyy" style="margin-right: 8%;" required>
+						<input type="button" class="btn-success" value="add" th:onclick="addPassenger()">
+						
+						<div id="container1"></div>
+					</div>
+
+					<div class="form-control">
+						<h5 class="mb-3 mt-2">Identity Proof</h5>
+						<!-- <input type="text" class="form-control" placeholder="mobile number" style="margin-right: 12%;" required> -->
+						<input type="number" class="form-control" min="100000000000" placeholder="aadhar number" style="padding: 4px;" required >
+					</div>
+
+					<div class="form-control my-3">
+						<h5 class="mb-3 mt-2">Payment</h5>
+						Total fare: <h6 id="getPrice" class="form-control" style="color: red; width: 10%; font-size: 20px; border: none; margin-left: -1%;"></h6>					
+						<div id="paycont" class="form-control text-center" style="border: none;">
+							<input type="button" id="paybtn" class="btn-warning" th:onclick="paymentStart()" value="Pay" required>
+						</div>
+					</div>
+
+					<div class="continue">
+						<input type="checkbox" style="margin-right: 1%; margin-left: 2%; margin-top: 2%;" required>I agree to the <a href="#T&C" style="background-color: rgb(243, 243, 243);">Terms and Conditions</a> <br>
+						<center><input type="submit" class="btn-primary" value="Confirm" th:onclick="passData()"></center>
+					</div>													
+				</div>
+		</form>
+	</div>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script th:src="@{https://checkout.razorpay.com/v1/checkout.js}"></script>
+	<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/book.js}"></script>
+	<script>
+		var date = new Date();
+		var tdate = date.getDate();
+		var month = date.getMonth() + 1;
+
+		if(tdate<10)
+		{
+			tdate = '0' + tdate;
+		}
+		if(month<10)
+		{
+			month = '0' + month;
+		}
+		var year = date.getUTCFullYear();
+		var mindate = year + "-" + month + "-" + tdate;
+		document.getElementById("travelDate").setAttribute('min',mindate);
+
+	</script>
+	<footer>
+        <p class="copyright">&copy; All rights reserved</p>
+      </footer>
+</body>
+
+</html>
+
+<!-- 
+Name: <input type="text" id="name" name="name"  class="form-control" style="margin-right: 6%; margin-left: 2px;" required>
+							Age:<input min="5" max="100" type="number" id="age" name="age"  class="form-control" style="margin-right: 6%; margin-left: 20px;" required> 
+							Gender: <input type="radio" name="gender" value="M" > Male <input type="radio" name="gender" value="F"> Female 
+
+							<input type="button" class="btn-danger" value="clear" th:onclick="aclear()" style="margin-left: 3%; width:5%">
+							<hr>
+
+-->

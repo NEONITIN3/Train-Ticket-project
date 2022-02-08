@@ -1,0 +1,99 @@
+body {
+    background-image:url("/image/train5.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-position:center;
+}
+
+.login-page {
+    width:360px;
+    padding:10% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background-color: rigba(7 ,40, 195, 0.8);
+    max-width: 360;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+}
+
+.form input {
+
+    font-family: "roboto", sans-serif;
+    outline:1;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding:15px;
+    box-sizing: border-box;
+    font-size: 14px;
+
+}
+#Bru{
+    Font-family: "Roboto",sans-serif;
+    text-transform: uppercase;
+    outline:0;
+    Background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+
+.form button {
+    Font-family: "Roboto",sans-serif;
+    text-transform: uppercase;
+    outline:0;
+    Background: #03c209;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+
+
+}
+
+.form button:hover,.form button:active{
+    background: #43A037;
+}
+
+.form .message{
+    margin: 15px 0 0;
+    color: aliceblue;
+    font-size: 12px;
+
+}
+
+.form .message a{
+    color:#4CAF50;
+    text-decoration: none;
+
+
+}
+
+.form .register{
+    display:none;
+}
+.ticket {
+    text-align: center;
+    border-radius: 20px 20px;
+    border-spacing: 0px;
+    background-color: white;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 10%;
+    padding-left: 5%;
+    font-size: 25px;
+}
+
+
